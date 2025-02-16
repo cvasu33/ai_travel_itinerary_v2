@@ -27,23 +27,24 @@ To avoid conflicts with system packages, set up a virtual environment:
 
 3️⃣ Install Dependencies
 
-pip install -r requirements.txt
+    pip install -r requirements.txt
 
 4️⃣ Set Up API Keys
 
 This app requires API keys from Cohere (AI text generation) and Unsplash 
 (destination images).
+
 🔹 Create a .env file in the project directory and add:
 
 COHERE_API_KEY=your_cohere_api_key
 UNSPLASH_ACCESS_KEY=your_unsplash_api_key
 
-    Replace your_cohere_api_key and your_unsplash_api_key with your actual 
+Replace your_cohere_api_key and your_unsplash_api_key with your actual 
 API keys.
 
 5️⃣ Run the Flask App
 
-python app.py
+    python app.py
 
 Once running, open your browser and visit:
 
