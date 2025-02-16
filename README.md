@@ -4,23 +4,26 @@ This is a Flask web app that generates a personalized travel itinerary
 using AI-powered text generation (Cohere API) and fetches relevant 
 destination images from Unsplash. Users can enter a destination and trip 
 duration, then download a styled PDF itinerary.
+
 🚀 Getting Started
+
 1️⃣ Clone the Repository
 
-git clone https://github.com/cvasu33/ai_travel_itinerary_v2.git
-cd ai_travel_itinerary_v2
+    git clone https://github.com/cvasu33/ai_travel_itinerary_v2.git
+    cd ai_travel_itinerary_v2
 
 2️⃣ Create a Virtual Environment
 
 To avoid conflicts with system packages, set up a virtual environment:
 
 # macOS/Linux
-python3 -m venv venv
-source venv/bin/activate
+
+    python3 -m venv venv
+    source venv/bin/activate
 
 # Windows
-python -m venv venv
-venv\Scripts\activate
+    python -m venv venv
+    venv\Scripts\activate
 
 3️⃣ Install Dependencies
 
