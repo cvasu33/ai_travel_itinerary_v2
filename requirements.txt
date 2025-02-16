@@ -1,0 +1,7 @@
+Flask
+requests
+cohere
+markdown2
+playwright
+pyppeteer
+nest_asyncio
