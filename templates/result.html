@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Itinerary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gradientStart: '#111827',  /* Slate-900 */
+                        gradientEnd: '#000000'    /* Black */
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-gradientStart to-gradientEnd text-gray-200">
+
+    <div class="container mx-auto p-6 max-w-3xl">
+        <!-- Destination Cover Image (Fetched via Unsplash API) -->
+        {% if cover_image %}
+            <img src="{{ cover_image }}" 
+                 alt="Destination Image" 
+                 class="w-full h-64 object-cover rounded-lg mb-6 shadow-md">
+        {% endif %}
+
+        <h2 class="text-3xl font-bold text-center text-white mb-6">
+            Your Itinerary for {{ destination }}
+        </h2>
+
+        {% for line in itinerary.split("\n") %}
+            {% if "Day" in line %}
+                <div class="bg-gray-800 shadow-lg shadow-blue-500/40 rounded-lg p-6 my-4 border-l-4 border-blue-500">
+                    <h3 class="text-3xl font-bold text-blue-300">
+                        {{ line }}
+                    </h3>
+                </div>
+            {% elif "Morning" in line or "Afternoon" in line or "Evening" in line or "Night" in line %}
+                <h4 class="text-xl font-semibold text-gray-300 mt-6">{{ line }}</h4>
+            {% elif ":" in line %}
+                <div class="bg-gray-800 shadow-md rounded-lg p-4 my-3">
+                    <p class="text-white text-lg leading-relaxed font-bold">{{ line.split(":", 1)[1].strip() }}</p>
+                </div>
+            {% else %}
+                <p class="text-gray-400 text-lg leading-relaxed italic border-t border-gray-600 pt-4">{{ line }}</p>
+            {% endif %}
+        {% endfor %}
+
+        <!-- Buttons (Hidden in PDF) -->
+        <div class="flex justify-center mt-6 no-print">
+            <a href="/" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mr-3">
+                Go Back
+            </a>
+            <form action="/download" method="post">
+                <input type="hidden" name="itinerary" value="{{ itinerary }}">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Download as PDF
+                </button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
